@@ -8,14 +8,14 @@
     "test": "mocha **/*.test.js",
     "test-watch": "nodemon --exec \"npm test\""
   },
-  "engines":{
-    "node":"6.11.2"
+  "engines": {
+    "node": "6.11.2"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
-    "expect": "^23.6.0",
+    "expect": "^1.20.2",
     "express": "^4.16.4",
     "mocha": "^5.2.0",
     "mongoose": "^5.3.7",
