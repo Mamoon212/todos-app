@@ -8,7 +8,7 @@ var {User}= require("./models/user");
 var app=express();
 
 app.use(bodyParser.json());
-
+ console.log(process.env.DATABASEURl);
 app.post("/todos", (req,res)=>{
     var todo= new Todo({
         text: req.body.text
@@ -35,6 +35,23 @@ app.get("/todos/:id", (req,res)=>{
         return res.status(404).send();
     }
     Todo.findById(id).then((todo)=>{
+        if(todo){
+            res.send({todo});
+        } else{
+            res.status(404).send();
+        }
+    }).catch((e)=>{
+        res.status(400).send();
+    });
+});
+
+app.delete("/todos/:id", (req,res)=>{
+    var id= req.params.id;
+    if(!ObjectID.isValid(id)){
+        console.log("ID not valid");
+        return res.status(404).send();
+    }
+    Todo.findByIdAndRemove(id).then((todo)=>{
         if(todo){
             res.send({todo});
         } else{
